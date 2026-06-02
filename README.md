@@ -1,7 +1,7 @@
 # PAC4-js
 
-- Login UOC: [Introdueix el teu login UOC aquí]
-- Nom i cognoms: [Introdueix el teu nom i cognoms aquí]
+- Login UOC: acampsme
+- Nom i cognoms: Alexandre Camps Mezquita
 
 ## Descripció
 Aquest projecte és la solució de la PAC4 de desenvolupament amb Angular. S'ha construït una aplicació ecommerce amb:
