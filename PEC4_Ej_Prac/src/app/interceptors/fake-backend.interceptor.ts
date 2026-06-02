@@ -72,7 +72,16 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
   private getUsers(): UserCredentials[] {
     const stored = localStorage.getItem(storageKey);
-    return stored ? JSON.parse(stored) : [];
+    if (stored) {
+      return JSON.parse(stored);
+    }
+
+    // Seed with a default user so login works out-of-the-box
+    const defaultUsers: UserCredentials[] = [
+      { username: 'test', password: 'test' }
+    ];
+    localStorage.setItem(storageKey, JSON.stringify(defaultUsers));
+    return defaultUsers;
   }
 
   private saveUsers(users: UserCredentials[]): void {

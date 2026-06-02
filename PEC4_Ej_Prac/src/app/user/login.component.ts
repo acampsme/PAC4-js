@@ -16,12 +16,15 @@ import { UserStoreService } from '../services/user-store.service';
         <label>
           Username
           <input formControlName="username" />
+          <p *ngIf="submitted && form.get('username')?.invalid" class="error">Username is required.</p>
         </label>
         <label>
           Password
           <input formControlName="password" type="password" />
+          <p *ngIf="submitted && form.get('password')?.invalid" class="error">Password is required.</p>
         </label>
-        <button type="submit" [disabled]="form.invalid">Login</button>
+        <button type="submit">Login</button>
+        <p *ngIf="submitted && form.invalid" class="error">Please fill in both fields before logging in.</p>
         <p *ngIf="error" class="error">{{ error }}</p>
       </form>
     </section>
@@ -39,6 +42,7 @@ import { UserStoreService } from '../services/user-store.service';
 export class LoginComponent implements OnInit {
   form: FormGroup;
   error = '';
+  submitted = false;
 
   constructor(
     private fb: FormBuilder,
@@ -59,6 +63,8 @@ export class LoginComponent implements OnInit {
   }
 
   submit(): void {
+    this.submitted = true;
+
     if (this.form.invalid) {
       return;
     }
